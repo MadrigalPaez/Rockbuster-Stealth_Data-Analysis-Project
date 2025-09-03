@@ -1,6 +1,6 @@
-#Rockbuster Stealth - Data Analysis Project  
+# Rockbuster Stealth - Data Analysis Project  
 
-##Objetive:  
+## Objetive:  
 Rockbuster Stealth LLC is a global movie rental company that previously operated physical stores around the world. With the rise of streaming platforms such as Netflix and Amazon Prime, Rockbuster plans to leverage its existing movie licenses to launch an **online video rental service**.  
 
 As part of a Data Analytics Program from CareerFoundry, I worked on this project in the role of a *junior data analyst* within Rockbuster’s Business Intelligence (BI) department. The main goal was to load company data into a **relational database management system (RDBMS)**, query it using **SQL**, and provide insights that could support the company’s launch strategy.  
