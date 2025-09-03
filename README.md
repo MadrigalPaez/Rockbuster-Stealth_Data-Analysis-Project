@@ -36,3 +36,4 @@ By developing this project, I worked on:
 - Presenting findings in a concise and professional manner.  
 
 ## Link to project visualizations in [Tableau](https://public.tableau.com/app/profile/.lvaro.madrigal/viz/DataAnalyticsImmersionExercise3_10PresentingSQLResults/FilmsbyGenre)
+## Link to project [final presentation](https://github.com/MadrigalPaez/Rockbuster-Stealth_Data-Analysis-Project/blob/f04e68b6db04acd452203c7745ba8d2b5815b27c/Business%20Insights%20and%20Market%20Trends%20Presentation/Rockbuster%20Stealth%20-%20Business%20Insights%20and%20Market%20Trends%20Presentation.pdf)
