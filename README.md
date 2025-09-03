@@ -35,4 +35,4 @@ By developing this project, I worked on:
 - Translating technical results into insights for decision-making.  
 - Presenting findings in a concise and professional manner.  
 
-#*Link to [project visualizations in Tableau](https://public.tableau.com/app/profile/.lvaro.madrigal/viz/DataAnalyticsImmersionExercise3_10PresentingSQLResults/FilmsbyGenre)
+#Link to project visualizations in [Tableau](https://public.tableau.com/app/profile/.lvaro.madrigal/viz/DataAnalyticsImmersionExercise3_10PresentingSQLResults/FilmsbyGenre)
