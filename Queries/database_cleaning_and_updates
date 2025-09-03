@@ -1,3 +1,49 @@
+-- CHECK AND CLEAN DIRTY DATA (NON-UNIFORM OR DUPLICATE DATA) FROM SPECIFIC COLUMNS
+
+-- NON-UNIFORM DATA
+
+SELECT DISTINCT film_id FROM film
+ORDER BY film_id
+
+SELECT DISTINCT customer_id FROM customer
+ORDER BY customer_id
+
+
+
+-- DUPLICATE DATA
+
+SELECT film_id,
+title, description,
+release_year,
+language_id, rental_duration,
+rental_rate,
+length,
+replacement_cost,
+rating,
+last_update, special_features,
+fulltext,
+COUNT(*) AS duplicate_row
+FROM film GROUP BY film_id,
+title, description, release_year, language_id, rental_duration, rental_rate, length,
+replacement_cost, rating, last_update, special_features, fulltext
+HAVING COUNT(*) > 1
+
+-- DUPLICATE DATA BY COLUMN
+
+SELECT film_id,
+COUNT(*) AS duplicate_film_id FROM film
+GROUP BY film_id HAVING COUNT(*) > 1
+
+SELECT title,
+COUNT(*) AS duplicate_title FROM film
+GROUP BY title HAVING COUNT(*) > 1
+
+SELECT description, COUNT(*) AS
+duplicate_description FROM film
+GROUP BY description HAVING COUNT(*) > 1
+
+
+
 -- ADDING NEW GENRES (THRILLER, CRIME, MYSTERY, ROMANCE, AND WAR) TO THE TABLE "category"
 
 INSERT INTO category (category_id, name) VALUES
