@@ -1,0 +1,91 @@
+-- TOP 10 COUNTRIES IN TERMS OF CUSTOMER NUMBERS
+
+SELECT
+country,
+COUNT(customer_id) AS total_customers
+FROM
+customer
+INNER JOIN address ON customer.address_id = address.address_id INNER JOIN city ON address.city_id = city.city_id
+INNER JOIN country ON city.country_id = country.country_id GROUP BY
+country
+ORDER BY
+total_customers DESC
+LIMIT 10
+
+
+
+-- TOP 10 CITIES THAT FALL WITHIN THE TOP 10 COUNTRIES BY SPENT
+
+SELECT city.city,
+SELECT *
+FROM country
+-> It includes “country_id” -> Primary key
+2.- Review the table connections through the keys:
+customer.address_id -> address.address_id address.city_id -> city.city_id city.country_id -> country.country_id
+3.- Process:
+· Select the columns we need to see: city, county and count of customers with alias, and count the total customers by city.
+· Select the table “customer”.
+· Link customer ids.
+· Link address ids.
+· Link country ids.
+· Identify the top 10 countries by number of customers using the previous query.
+· Group by city to aggregate customers per city.
+· Order by count of customers, descending.
+· Limit the results to the top 10 cities requested.
+country.country,
+COUNT(customer.customer_id) AS total_customers
+FROM customer
+INNER JOIN address ON customer.address_id = address.address_id INNER JOIN city ON address.city_id = city.city_id
+INNER JOIN country ON city.country_id = country.country_id WHERE country.country IN (
+SELECT country.country
+FROM customer
+INNER JOIN address ON customer.address_id = address.address_id INNER JOIN city ON address.city_id = city.city_id
+INNER JOIN country ON city.country_id = country.country_id GROUP BY country.country
+ORDER BY COUNT(customer.customer_id) DESC
+LIMIT 10)
+GROUP BY city.city, country.country ORDER BY total_customers DESC LIMIT 10
+
+
+
+-- AVERAGE AMOUNT PAID BY THE TOP 5 CUSTOMERS, FROM THE TOP CITIES FROM THE TOP 10 COUNTRIES
+
+WITH total_spent AS ( SELECT
+customer.customer_id,
+SUM(payment.amount) AS total_spent FROM customer
+INNER JOIN payment
+ON customer.customer_id = payment.customer_id INNER JOIN address
+ON customer.address_id = address.address_id INNER JOIN city
+ON address.city_id = city.city_id INNER JOIN country
+ON city.country_id = country.country_id WHERE city.city IN
+('Aurora', 'Atlixco', 'Xintai', 'Adoni', 'Dhule (Dhulia)',
+'Kurashiki', 'Pingxiang', 'Sivas', 'Celaya', 'So Leopoldo') AND country.country IN
+('India', 'China', 'United States', 'Japan', 'Mexico',
+'Brazil', 'Russian Federation', 'Philippines', 'Turkey', 'Indonesia') GROUP BY customer.customer_id
+ORDER BY total_spent DESC
+LIMIT 5)
+SELECT
+AVG(total_spent) AS avg_spent_top5customers
+FROM total_spent
+
+
+
+-- TOP 5 CUSTOMERS BY SPEND COUNTRY
+
+WITH top_5_customers AS ( SELECT
+customer.customer_id, country.country AS country_name, SUM(payment.amount) AS total_spent
+FROM customer INNER JOIN payment
+ON customer.customer_id = payment.customer_id INNER JOIN address
+ON customer.address_id = address.address_id INNER JOIN city
+ON address.city_id = city.city_id INNER JOIN country
+ON city.country_id = country.country_id WHERE city.city IN
+('Aurora', 'Atlixco', 'Xintai', 'Adoni', 'Dhule (Dhulia)',
+'Kurashiki', 'Pingxiang', 'Sivas', 'Celaya', 'So Leopoldo') AND country.country IN
+('India', 'China', 'United States', 'Japan', 'Mexico',
+'Brazil', 'Russian Federation', 'Philippines', 'Turkey', 'Indonesia') GROUP BY customer.customer_id, country.country
+ORDER BY total_spent DESC
+LIMIT 5)
+SELECT
+top_5_customers.country_name,
+COUNT(*) AS top_customer_count, SUM(top_5_customers.total_spent) AS total_payment_amount
+FROM top_5_customers
+GROUP BY top_5_customers.country_name ORDER BY top_5_customers.country_name
