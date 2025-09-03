@@ -4,3 +4,46 @@ SELECT table_name, column_name, data_type
 FROM information_schema.columns
 WHERE
 table_schema = 'public'
+
+
+-- CALCULATE DESCRIPTIVE STATISTICS FOR BOTH "film" AND "customer" TABLES
+
+SELECT
+MIN(release_year) AS minimum_release_year, MAX(release_year) AS maximum_release_year,
+AVG(release_year) AS avg_release_year FROM film
+
+SELECT
+MODE() WITHIN GROUP (ORDER BY title) AS mode_title,
+MODE() WITHIN GROUP (ORDER BY description) AS mode_description,
+MODE() WITHIN GROUP (ORDER BY language_id) AS mode_language_id, MODE() WITHIN GROUP (ORDER BY rating) AS mode_rating,
+MODE() WITHIN GROUP (ORDER BY special_features) AS mode_special_features
+FROM film
+
+SELECT COUNT(customer_id) AS customer_id_count FROM customer
+
+SELECT store_id,
+COUNT(*) AS times_repeated
+FROM customer
+GROUP BY store_id
+ORDER BY times_repeated DESC
+
+
+
+-- COUNT ACTIVE USERS
+
+SELECT active,
+COUNT(*) AS customers_status FROM
+customer GROUP BY
+active
+
+
+
+-- CHECK THE NAMES/LAST NAMES THAT ARE REPEATED MORE TIMES
+
+SELECT
+MODE() WITHIN GROUP (ORDER BY first_name) AS modevalue_first_name, MODE() WITHIN GROUP (ORDER BY last_name) AS modevalue_last_name,
+FROM customer
+
+
+
+
