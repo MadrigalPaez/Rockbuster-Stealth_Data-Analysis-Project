@@ -1,3 +1,21 @@
+-- "PG" and "G" RATING INFORMATION (COUNT OF MOVIES, AVERAGE RENTAL RATE, AND MAXIMUM AND MINIMUM RENTAL DURATIONS)
+
+SELECT
+COUNT(film_id) AS count_of_movies, AVG(rental_rate) AS avG_movie_rental_rate, MAX(rental_duration) AS max_rental_duration, MIN(rental_duration) AS min_rental_duration FROM film
+WHERE rating IN ('PG', 'G')
+
+
+
+-- "PG" and "G" GROUPED BY RATING
+
+SELECT rating,
+COUNT(film_id) AS count_of_movies, AVG(rental_rate) AS avg_movie_rental_rate, MAX(rental_duration) AS max_rental_duration, MIN(rental_duration) AS min_rental_duration
+FROM film
+WHERE rating IN ('PG', 'G')
+GROUP BY rating
+
+
+
 -- TOP 10 COUNTRIES IN TERMS OF CUSTOMER NUMBERS
 
 SELECT
