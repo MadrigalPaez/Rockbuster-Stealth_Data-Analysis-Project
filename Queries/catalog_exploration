@@ -1,0 +1,42 @@
+-- FILM TITLE CONTAINS THE WORD UPTOWN IN ANY POSITION
+
+SELECT
+title AS film_name
+FROM film
+WHERE title LIKE '%Uptown%'
+
+
+  
+-- FILM LENGTH IS MORE THAN 120 MINUTES AND RENTAL RATE IS MORE THAN 2.99
+
+SELECT
+title, length, rental_rate
+FROM film
+WHERE length >120 AND rental_rate > 2.99
+
+
+
+-- RENTAL DURATION IS BETWEEN 3 AND 7 DAYS (WHERE 3 AND 7 AREN’T INCLUSIVE)
+
+SELECT
+title, rental_duration
+FROM film
+WHERE rental_duration > 3 AND rental_duration < 7
+
+
+
+-- FILM REPLACEMENT COST IS LESS THAN 14.99
+
+SELECT
+title, replacement_cost
+FROM film
+WHERE replacement_cost < '14.99'
+
+
+
+-- FILM RATING IS EITHER PG OR G
+
+SELECT
+title, rating
+FROM film
+WHERE rating IN ('PG', 'G')
